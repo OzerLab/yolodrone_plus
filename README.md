@@ -47,7 +47,7 @@ The .yaml files for the datasets are available under the datasets. Please do not
 ### <div align="center">Reproduce Our Results</div>
 
 ## Pretrained YOLOv5s Models and YOLODrone Models
-The .yaml files presented in this paper are added to the models folder. Please do not forget to move the .yaml files to their proper location after yolov5 repository cloned and installed. 
+The .yaml files presented in this paper are added to the models folder. Please do not forget to move the .yaml files to their proper location after yolov5 repository cloned and installed. You can download pretrained weights from: [Pretrained Weights](https://drive.google.com/drive/folders/1XdEF5qvMkpjcPiV_NVPfnHUiye4APxNe?usp=sharing) 
 
 |Dataset  |Model        |size |AP%    |AR%    |AP% 50 |params
 |---      |---          |---  |---    |---    |---    |---
