@@ -1,0 +1,1 @@
+python train.py --data data/SkyData.yaml --cfg models/hub/yolov5s-transformer.yaml --weights runs/train/yolov5s-tr-skyData/weights/last.pt --epoch 600 --device 1 --resume
