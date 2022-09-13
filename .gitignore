@@ -5,5 +5,5 @@ yolov5/Dockerfile
 yolov5/.github/
 yolov5/runs/
 yolov5/weights/
-datasets/VisDrone/
+datasets/VisDrone/*
 yolov5/trainedModels
