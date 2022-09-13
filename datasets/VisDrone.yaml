@@ -1,6 +1,0 @@
-path: ../datasets/VisDrone  # dataset root dir
-train: train/images  # train images (relative to 'path')  6471 images
-val: test/images  # test images (optional)  1610 images
-
-nc: 12  # number of classes
-names: ['ignoredRegions','pedestrian', 'people', 'bicycle', 'car', 'van', 'truck', 'tricycle', 'awning-tricycle', 'bus', 'motor', 'others']

@@ -1,1 +1,4 @@
 yolov5/
+yolov5/runs/
+datasets/VisDrone/
+yolov5/trainedModels
