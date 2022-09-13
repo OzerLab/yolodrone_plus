@@ -1,4 +1,3 @@
-yolov5/*.py
 yolov5/*.pt
 yolov5/*.txt
 yolov5/.*
