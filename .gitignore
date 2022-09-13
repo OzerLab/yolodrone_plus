@@ -1,4 +1,13 @@
-yolov5/
+yolov5/data/
+yolov5/*.py
+yolov5/*.pt
+yolov5/*.txt
+yolov5/.*
+yolov5/Dockerfile
+yolov5/models/
+yolov5/.github/
 yolov5/runs/
+yolov5/utils/
+yolov5/weights/
 datasets/VisDrone/
 yolov5/trainedModels
