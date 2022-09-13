@@ -10,3 +10,5 @@ yolov5/utils/
 yolov5/weights/
 datasets/VisDrone/
 yolov5/trainedModels
+yolov5/data/hyps
+yolov5/data/scripts
