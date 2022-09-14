@@ -55,15 +55,9 @@ Please check that you are in the correct directory for the following instruction
 pwd #The output of the command should be like: .../yolodrone_plus
 mkdir datasets #This folder will be used by yolov5
 mkdir datasets/VisDrone #The processed annotations and images will be moved here.
-mkdir datasets/VisDrone/VisDrone2019-MOT-train
-mkdir datasets/VisDrone/VisDrone2019-MOT-train/images
-mkdir datasets/VisDrone/VisDrone2019-MOT-train/labels
 mkdir datasets/VisDrone/VisDrone2019-MOT-val
 mkdir datasets/VisDrone/VisDrone2019-MOT-val/images
 mkdir datasets/VisDrone/VisDrone2019-MOT-val/labels
-mkdir datasets/VisDrone/VisDrone2019-MOT-test
-mkdir datasets/VisDrone/VisDrone2019-MOT-test/images
-mkdir datasets/VisDrone/VisDrone2019-MOT-test/labels
 ```
 
 

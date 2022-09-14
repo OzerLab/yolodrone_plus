@@ -4,6 +4,7 @@ import shutil
 import numpy as np
 import json
 import cv2
+from PIL import Image
 
 """
 A playground method to see the details of the annotation for object detection task.
@@ -24,51 +25,7 @@ def display_annotation_sample(annotationFileName):
     for i, im in enumerate(data['images']):   
         if i == imageID:
             print(im)
-
-
-def annotation_processor():
-    for scene in imageAnnotation.keys():
-        annotationDirectory = scene + '_coco.json'
-        f = open(annotationDirectory)
-        data = json.load(f)
-        for i, im in enumerate(data['images']):
-            if i == 0:
-                imageAnnotation[scene]['height']=im['height']
-                imageAnnotation[scene]['width']=im['width']
-            imageAnnotation[scene][im['id']]=im['file_name'].replace('/','_').replace('.png','.jpg')
-                    
-
-    path = "/cta/users/oyku/Object_Tracking/github/Yolov5_DeepSort_Pytorch/datasets/SkyData/skydata-test/images/"
-    dir_list = os.listdir(path)
-
-    actualAnnotationPath = "/cta/users/oyku/Object_Tracking/dataset/skydatav1/test/annotations/"
-    for scene in imageAnnotation.keys():
-        annotationDirectory = scene + '_coco.json'
-        for i, ann in enumerate(data['annotations']):   
-            try:
-                HEIGHT= imageAnnotation[scene]['height']
-                WIDTH = imageAnnotation[scene]['width']
-                        
-                if imageAnnotation[scene][ann['image_id']] in dir_list:
-                    txtFileName= imageAnnotation[scene][ann['image_id']].replace('.jpg','.txt')
-                    newAnnfile = open(actualAnnotationPath+txtFileName, "a") 
-
-                    x_top = int(ann['bbox'][0])
-                    y_top  = int(ann['bbox'][1])
-                    w = int(ann['bbox'][2])
-                    h = int(ann['bbox'][3])
-
-                    x_center=np.absolute(np.float32(np.abs(x_top+(w/2))/WIDTH))
-                    y_center=np.absolute(np.float32(np.abs(y_top+(h/2))/WIDTH))
-
-                    lineToAdd = str(ann['category_id'])+'\t'+ str(x_center)+'\t'+ str(y_center)+'\t'+ str(w/WIDTH)+'\t'+ str(h/HEIGHT)+'\n'
-                    
-                    newAnnfile.write(lineToAdd)
-                    newAnnfile.close()
-            except:
-                print(scene,ann['image_id'])
-                pass
-
+    
 
 def folder_structure(raw_dir, task, dataset):
     sequenceDict = {}
@@ -83,19 +40,55 @@ def folder_structure(raw_dir, task, dataset):
                     sequenceDict[dSet] = [ sequence.rstrip('.txt') for sequence in os.listdir(annotationDir)]
                 except:
                     print("There is a problem with the VisDrone dataset, please do not change the unzipped folder names!")
-            assert datasets == ['val'], "There is a problem with the VisDrone dataset, please do not change the unzipped folder names and remove the .zip folders!"
-            assert len(datasets) == 1, "Please download trainset (7.53 GB), valset (1.48 GB) and testset-dev (2.145 GB) datasets, excluding testset-challenge (2.70 GB)!"
+            assert datasets == ['train', 'test', 'val'], "There is a problem with the VisDrone dataset, please do not change the unzipped folder names and remove the .zip folders!"
+            assert len(datasets) == 3, "Please download trainset (7.53 GB), valset (1.48 GB) and testset-dev (2.145 GB) datasets, excluding testset-challenge (2.70 GB)!"
             return sequenceDict
     
 
+def annotation_processor(raw_dir, data_dir, task, dataset, folderStructure):
+    if task == 'tracking' and dataset == 'VisDrone':
+        for dSet in folderStructure:
+            imageDirectory = data_dir + dataset + '/' + dSet + '/images/'
+            annotationDirectory =  raw_dir + dSet + '/annotations/'
+            newTrainAnnotationDirectory = data_dir + dataset + '/' + dSet + '/labels/'
+            imagesArr = sorted(os.listdir(imageDirectory))
+
+            for i, image in enumerate(imagesArr):
+                imageDir = imageDirectory + image
+                im = Image.open(imageDir,"r")
+                width, height = im.size
+
+                fileName = image.split('-')[0] + '.txt'
+                sequenceID = int(image.split('-')[1].split('.jpg')[0])
+                f = open(annotationDirectory + fileName, "r")
+                lines= f.readlines()
+                newAnnotationFile = open(newTrainAnnotationDirectory + image.rstrip('.jpg')+ '.txt', 'w+')
+                for i, line in enumerate(lines):
+                    lineList = line.rstrip('\n').split(',')
+                    if int(lineList[0]) == sequenceID:
+                        x_top = int(lineList[2])
+                        y_top  = int(lineList[3])
+                        w = int(lineList[4])
+                        h = int(lineList[5])
+
+                        x_center=np.absolute(np.float32(np.abs(x_top+(w/2))/width))
+                        y_center=np.absolute(np.float32(np.abs(y_top+(h/2))/height))
+
+                        classID = int(lineList[7])
+
+                        tempLine = str(classID) + '\t' + str(x_center) + '\t' + str(y_center) + '\t' + str(w/width) + '\t' + str(h/height)
+                        newAnnotationFile.write(tempLine + '\n')
+                newAnnotationFile.close()
+        
+
 def image_directory_processor(raw_dir, data_dir, task, dataset, folderStructure):
-    if task == 'tracking':
+    if task == 'tracking' and dataset == 'VisDrone':
         for dSet in folderStructure:
             for sequence in sorted(folderStructure[dSet]):
                 imageFolder = raw_dir + dSet + '/sequences/' + sequence + '/'
                 images = os.listdir(imageFolder)
                 for i, image in enumerate(sorted(images)):
-                    if i == 0:                
+                    if i >= 0:                
                         originalImage = cv2.imread(imageFolder + '/'+image, cv2.IMREAD_COLOR)
                         newDirectory = data_dir + dataset + '/' + dSet + '/images/' + sequence + '-' + image 
                         cv2.imwrite(newDirectory, originalImage, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
@@ -114,6 +107,7 @@ def parse_opt(known=False):
 def main(opt):
     folderStructure = folder_structure(opt.raw_dir, opt.task, opt.dataset)
     image_directory_processor(opt.raw_dir, opt.data_dir, opt.task, opt.dataset, folderStructure)
+    annotation_processor(opt.raw_dir, opt.data_dir, opt.task, opt.dataset, folderStructure)
     
 
 if __name__ == "__main__":
