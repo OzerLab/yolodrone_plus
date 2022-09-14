@@ -43,10 +43,46 @@ VisDrone_raw
    |        |        |        └——————0000002.jpg
    |        |        |        └——————0000003.jpg
 ```
-### <div align="center">Prepare UAV Datasets</div>
-The code for converting [VisDrone Dataset](http://aiskyeye.com/) and [SkyDatav1](https://www.skydatachallenge.com/) is available in this repository. As also mentioned in the official repository of the [YOLOv5](https://github.com/ultralytics/yolov5) the YOLO labelling for is different than COCO. coco2visdrone.py will convert the coco format of the skydata which is in COCO format to visdrone format. Also, the code for converting the VisDrone-MOT dataset to VisDrone-DT format is available in this repository. 
+## Prepare UAV Datasets
+<!---The code for converting [VisDrone Dataset](http://aiskyeye.com/) and [SkyDatav1](https://www.skydatachallenge.com/) is available in this repository. As also mentioned in the official repository of the [YOLOv5](https://github.com/ultralytics/yolov5) the YOLO labelling for is different than COCO. utils.py will convert the coco format of the visDrone and skydata to YOLO format. Also, the code for converting the VisDrone-MOT dataset to VisDrone-DT format is available in this repository. -->
 
-The folder format under the datasets should be as follows:
+Please check that you are in the correct directory for the following instructions to be working. Make sure that after downloading the VisDrone raw dataset under the VisDrone_raw, you move back to the main directory. To check that you are in the main directory use the following command:
+
+```bash
+pwd #The output of the command should be like: .../yolodrone_plus
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+After the raw dataset conversion the folder format under the datasets should be as follows for YOLOv5 to be working properly:
 ```bash
 datasets
    |——————SkyData
