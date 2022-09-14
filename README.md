@@ -64,7 +64,7 @@ The .yaml files presented in this paper are added to the models folder. Please d
 |SkyData  |YOLODrone+   |640  |56.0   |32.7   |38.2   |154,646,139
    
 ## TODOs
-- [ ] support more datasets
+- [ ] support more object tracking datasets
 - [ ] add the pretrained weights to gdrive
 - [ ] MOT implementation
 - [ ] add speed results

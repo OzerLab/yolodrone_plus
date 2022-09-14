@@ -30,6 +30,8 @@ def get_annotation_sample(annotationFileName):
 
 """
 Rename the images and save as jpg
+image_directory_processor(imageFolders)
+imageFolders = "/cta/users/oyku/Object_Tracking/dataset/visdrone2021/test/images/"
 """
 def image_directory_processor(imageFolders):
     dirs = os.listdir( imageFolders )
@@ -41,11 +43,9 @@ def image_directory_processor(imageFolders):
                 newName = imageFolders+dir+'_'+image.rstrip('.png')+'.jpg'
                 cv2.imwrite(newName, originalImage, [int(cv2.IMWRITE_JPEG_QUALITY), 100])
 
-imageFolders = "/cta/users/oyku/Object_Tracking/dataset/visdrone2021/test/images/"
-image_directory_processor(imageFolders)
+
 """
 Create a image dictionary to create the annotation files
-"""
 """
 f = open("0003_W_coco.json")
 data = json.load(f)
@@ -53,6 +53,7 @@ print(len(data['annotations']))
 for i, ann in enumerate(data['annotations']):
     if i <= 10:
         print(ann['image_id'], ann['category_id'], ann['bbox'][0], ann['bbox'][1], ann['bbox'][2], ann['bbox'][3])
+
 imageAnnotation={
     "0003_W":{},
     "0009_W_0_2000":{},
@@ -64,6 +65,8 @@ imageAnnotation={
     "0018_W_2000_3000":{},
     "0027_Z":{},
 }
+"""
+    
     "0003_W":{},
     "0009_W_0_2000":{},
     "0009_W_2000_4000":{},
@@ -72,13 +75,12 @@ imageAnnotation={
     "0018_W_1000_2000":{},
     "0027_Z":{},
     0009_W_2000_4000  0010_W_4001_4500  0018_W_2000_3000  0027_Z
-"""
 
 imageAnnotation={
     "0027_Z":{},
 }
-
 """
+
 for scene in imageAnnotation.keys():
     annotationDirectory = scene + '_coco.json'
     f = open(annotationDirectory)
@@ -120,7 +122,7 @@ for scene in imageAnnotation.keys():
         except:
             print(scene,ann['image_id'])
             pass
-"""
+
 """
 Move some images and annotations to val
 """
