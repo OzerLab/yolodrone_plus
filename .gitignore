@@ -8,3 +8,4 @@ yolov5/runs/
 yolov5/weights/
 datasets/VisDrone/*
 yolov5/trainedModels
+*.zip

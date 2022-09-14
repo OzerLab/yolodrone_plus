@@ -43,6 +43,9 @@ VisDrone_raw
    |        |        |        └——————0000002.jpg
    |        |        |        └——————0000003.jpg
 ```
+
+After all three datasets which are trainset (7.53 GB), valset (1.48 GB) and testset-dev (2.145 GB) downloaded and unzipped please remove the downloaded .zip folders.
+
 ## Prepare UAV Datasets
 <!---The code for converting [VisDrone Dataset](http://aiskyeye.com/) and [SkyDatav1](https://www.skydatachallenge.com/) is available in this repository. As also mentioned in the official repository of the [YOLOv5](https://github.com/ultralytics/yolov5) the YOLO labelling for is different than COCO. utils.py will convert the coco format of the visDrone and skydata to YOLO format. Also, the code for converting the VisDrone-MOT dataset to VisDrone-DT format is available in this repository. -->
 
@@ -50,63 +53,37 @@ Please check that you are in the correct directory for the following instruction
 
 ```bash
 pwd #The output of the command should be like: .../yolodrone_plus
+mkdir datasets #This folder will be used by yolov5
+mkdir datasets/VisDrone #The processed annotations and images will be moved here.
+mkdir datasets/VisDrone/VisDrone2019-MOT-train
+mkdir datasets/VisDrone/VisDrone2019-MOT-train/images
+mkdir datasets/VisDrone/VisDrone2019-MOT-train/labels
+mkdir datasets/VisDrone/VisDrone2019-MOT-val
+mkdir datasets/VisDrone/VisDrone2019-MOT-val/images
+mkdir datasets/VisDrone/VisDrone2019-MOT-val/labels
+mkdir datasets/VisDrone/VisDrone2019-MOT-test
+mkdir datasets/VisDrone/VisDrone2019-MOT-test/images
+mkdir datasets/VisDrone/VisDrone2019-MOT-test/labels
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 After the raw dataset conversion the folder format under the datasets should be as follows for YOLOv5 to be working properly:
 ```bash
 datasets
-   |——————SkyData
-   |        └——————train
-   |        |        └——————images
-   |        |        └——————labels
-   |        └——————val
-   |        |        └——————images
-   |        |        └——————labels
-   |        └——————test
-   |        |        └——————images
-   |        |        └——————labels
    └——————VisDrone
-   |         └——————train
+   |         └——————VisDrone2019-MOT-train
    |         |        └——————images
    |         |        └——————labels
-   |         └——————val
+   |         └——————VisDrone2019-MOT-val
    |         |        └——————images
    |         |        └——————labels
-   |         └——————test
+   |         └——————VisDrone2019-MOT-test
    |         |        └——————images
    |         |        └——————labels
 ```
-The .yaml files for the datasets are available under the datasets. Please do not forget to carry the .yaml files to their proper place under /yolov5/data/ after you clone the original yolov5 repository. 
+The .yaml files for the datasets are available under the datasets. Please do not forget to carry the .yaml files to their proper place under /yolov5/data/ after you clone the original yolov5 repository.
+
 ### <div align="center">Reproduce Our Results</div>
 
 ## Pretrained YOLOv5s Models and YOLODrone Models
@@ -128,9 +105,10 @@ The .yaml files presented in this paper are added to the models folder. Please d
    
 ## TODOs
 - [ ] support more object tracking datasets
-- [ ] add the pretrained weights to gdrive
-- [ ] MOT implementation
-- [ ] add speed results
+- [x] add the pretrained weights to gdrive
+- [ ] MOT implementation for DeepSort, StrongSort and ByteTrack
+- [ ] MOT test implementation for HOTA metrics
+- [ ] add fps results
 
 <details open>
 <summary>References</summary>
