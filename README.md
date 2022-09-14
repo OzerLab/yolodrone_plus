@@ -7,15 +7,42 @@ The performance of object detection algorithms running on images taken from Unma
 
 [YOLODrone+: Improved YOLO Architecture for Object Detection in UAV Images]()
 
-### <div align="center">Clone and Install </div>
-Please follow the instructions from the original YOLOv5 model about installing the repository!
-Clone repo and install requirements:
-```bash
-git clone https://github.com/ultralytics/yolov5  # clone
-cd yolov5
-pip install -r requirements.txt  # install
-```
+### <div align="center">Raw Data Management</div>
+This repository was designed to solve object tracking problem. The first step to solve the object tracking problem is object detection. Therefore, we used VisDrone-MOT Dataset and convert the image and annonation directories to object detection format. To sum up the util.py code is capable of converting the MOT directory format to OD format as well as converting the VisDrone annotation format, same format as coco, to work within YOLO format.
 
+For more explanation please refer to: 
+[YOLO Annotation Format](https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data#11-create-datasetyaml)
+## Creating a directory for Raw Data:
+First things first, in order to complete the annotation format transformation and work in a clean environment please create a folder named as VisDrone_raw under the main directory with the following command:
+```bash
+mkdir VisDrone_raw
+cd VisDrone_raw
+```
+## Downloading Dataset:
+Please download Task 4: Multi-Object Tracking dataset from the following official VisDrone GitHub [link](https://github.com/VisDrone/VisDrone-Dataset#task-4-multi-object-tracking).
+
+It is faster to use gdown for downloading from Google Drive. 
+```bash
+gdown "[gdrive download id]"
+```
+For every set such as trainset, valset, testset download the .zip folders and unzip them under the VisDrone_raw directory. The following shows a sample directory structure of the valset when the valset is downloaded and unzipped:
+
+```bash
+VisDrone_raw
+   |——————VisDrone2019-MOT-val
+   |        └——————annotations  #annotation folder
+   |        |        └——————uav0000086_00000_v.txt
+   |        |        └——————uav0000117_02622_v.txt
+   |        └——————sequences    #sequence folder which stores the images according to scene footage
+   |        |        └——————uav0000086_00000_v       #scene name
+   |        |        |        └——————0000001.jpg     #the images which are obtained from scene videos
+   |        |        |        └——————0000002.jpg
+   |        |        |        └——————0000003.jpg
+   |        |        └——————uav0000117_02622_v
+   |        |        |        └——————0000001.jpg
+   |        |        |        └——————0000002.jpg
+   |        |        |        └——————0000003.jpg
+```
 ### <div align="center">Prepare UAV Datasets</div>
 The code for converting [VisDrone Dataset](http://aiskyeye.com/) and [SkyDatav1](https://www.skydatachallenge.com/) is available in this repository. As also mentioned in the official repository of the [YOLOv5](https://github.com/ultralytics/yolov5) the YOLO labelling for is different than COCO. coco2visdrone.py will convert the coco format of the skydata which is in COCO format to visdrone format. Also, the code for converting the VisDrone-MOT dataset to VisDrone-DT format is available in this repository. 
 

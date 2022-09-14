@@ -1,3 +1,4 @@
+VisDrone_raw
 yolov5/*.pt
 yolov5/*.txt
 yolov5/.*
