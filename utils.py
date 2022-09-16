@@ -40,14 +40,15 @@ def folder_structure(raw_dir, task, dataset):
                     sequenceDict[dSet] = [ sequence.rstrip('.txt') for sequence in os.listdir(annotationDir)]
                 except:
                     print("There is a problem with the VisDrone dataset, please do not change the unzipped folder names!")
-            assert datasets == ['train', 'test', 'val'], "There is a problem with the VisDrone dataset, please do not change the unzipped folder names and remove the .zip folders!"
-            assert len(datasets) == 3, "Please download trainset (7.53 GB), valset (1.48 GB) and testset-dev (2.145 GB) datasets, excluding testset-challenge (2.70 GB)!"
+            #assert datasets == ['test','train', 'val'], "There is a problem with the VisDrone dataset, please do not change the unzipped folder names and remove the .zip folders!"
+            #assert len(datasets) == 3, "Please download trainset (7.53 GB), valset (1.48 GB) and testset-dev (2.145 GB) datasets, excluding testset-challenge (2.70 GB)!"
             return sequenceDict
     
 
 def annotation_processor(raw_dir, data_dir, task, dataset, folderStructure):
     if task == 'tracking' and dataset == 'VisDrone':
         for dSet in folderStructure:
+            print("Working on: ", dSet)
             imageDirectory = data_dir + dataset + '/' + dSet + '/images/'
             annotationDirectory =  raw_dir + dSet + '/annotations/'
             newTrainAnnotationDirectory = data_dir + dataset + '/' + dSet + '/labels/'

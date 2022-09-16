@@ -58,8 +58,18 @@ mkdir datasets/VisDrone #The processed annotations and images will be moved here
 mkdir datasets/VisDrone/VisDrone2019-MOT-val
 mkdir datasets/VisDrone/VisDrone2019-MOT-val/images
 mkdir datasets/VisDrone/VisDrone2019-MOT-val/labels
+mkdir datasets/VisDrone/VisDrone2019-MOT-train
+mkdir datasets/VisDrone/VisDrone2019-MOT-train/images
+mkdir datasets/VisDrone/VisDrone2019-MOT-train/labels
+mkdir datasets/VisDrone/VisDrone2019-MOT-test
+mkdir datasets/VisDrone/VisDrone2019-MOT-test/images
+mkdir datasets/VisDrone/VisDrone2019-MOT-test/labels
 ```
 
+Then run the following script:
+```bash
+python3 utils.py --raw-dir .../yolodrone_plus/VisDrone_raw/ --data-dir .../yolodrone_plus/datasets/
+```
 
 
 After the raw dataset conversion the folder format under the datasets should be as follows for YOLOv5 to be working properly:
