@@ -61,9 +61,9 @@ mkdir datasets/VisDrone/VisDrone2019-MOT-val/labels
 mkdir datasets/VisDrone/VisDrone2019-MOT-train
 mkdir datasets/VisDrone/VisDrone2019-MOT-train/images
 mkdir datasets/VisDrone/VisDrone2019-MOT-train/labels
-mkdir datasets/VisDrone/VisDrone2019-MOT-test
-mkdir datasets/VisDrone/VisDrone2019-MOT-test/images
-mkdir datasets/VisDrone/VisDrone2019-MOT-test/labels
+mkdir datasets/VisDrone/VisDrone2019-MOT-test-dev
+mkdir datasets/VisDrone/VisDrone2019-MOT-test-dev/images
+mkdir datasets/VisDrone/VisDrone2019-MOT-test-dev/labels
 ```
 
 Then run the following script:
