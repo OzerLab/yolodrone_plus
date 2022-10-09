@@ -87,7 +87,11 @@ datasets
    |         |        └——————labels
 ```
 The .yaml files for the datasets are available under the datasets. Please do not forget to carry the .yaml files to their proper place under /yolov5/data/ after you clone the original yolov5 repository.
-
+## Train the Object Detection Model YOLOv5
+The followingng script can be used to train YOLODrone+ model. Please either make sure that you are under the yolov5 folder or reorganize the directories for the argumants accordingly.  
+```bash
+python train.py --data data/VisDrone.yaml --cfg models/hub/yoloDronePlus.yaml  --weights '' --batch-size 16
+```
 ### <div align="center">Reproduce Our Results</div>
 
 ## Pretrained YOLOv5s Models and YOLODrone Models
@@ -110,12 +114,13 @@ The .yaml files presented in this paper are added to the models folder. Please d
 ## TODOs
 - [ ] support more object tracking datasets
 - [x] add the pretrained weights to gdrive
-- [ ] MOT implementation for DeepSort, StrongSort and ByteTrack
+- [ ] MOT implementation for DeepSort and StrongSort
 - [ ] MOT test implementation for HOTA metrics
 - [ ] add fps results
 
-<details open>
-<summary>References</summary>
-- [YOLOv5](https://github.com/ultralytics/yolov5)
-- [ViT](https://github.com/google-research/vision_transformer)
-</details>
+## Citation
+The codes for training YOLOv5 was retrieved from original [YOLOv5 github repository](https://github.com/ultralytics/yolov5) and modified in order to increase the accuracy of the detector for UAV Datasets especially considering the small objects in these datasets. Therefore, please do not forget to refer and cite original [YOLOv5 github repository](https://github.com/ultralytics/yolov5) for more information. 
+
+## References
+- YOLOv5 Github Repository: [YOLOv5](https://github.com/ultralytics/yolov5)
+- Vision Transformers Paper: [ViT](https://github.com/google-research/vision_transformer)
