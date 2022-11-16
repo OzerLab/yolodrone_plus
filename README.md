@@ -2,13 +2,15 @@
 
 This repository is developed for presenting the results for YOLODrone+ which has the similar architecture with YOLOv5.
 
+!!focus detection
+
 ## Abstract:
 The performance of object detection algorithms running on images taken from Unmanned Aerial Vehicles (UAVs) remains limited when compared to the object detection algorithms running on ground taken images. Due to its various features, YOLO based models, as a part of one-stage object detectors,  are preferred in many UAV based applications. In this paper, we are proposing novel architectural improvements to the YOLOv5 architecture. Our improvements include: (i) increasing the number of detection layers and (ii) use of transformers in the model. In order to train and test the performance of our proposed model, we used VisDrone and SkyData datasets in our paper. Our test results suggest that our proposed solutions can improve the detection accuracy.
 
 [YOLODrone+: Improved YOLO Architecture for Object Detection in UAV Images]()
 
 ### <div align="center">Raw Data Management</div>
-This repository was designed to solve object tracking problem. The first step to solve the object tracking problem is object detection. Therefore, we used VisDrone-MOT Dataset and convert the image and annonation directories to object detection format. To sum up the util.py code is capable of converting the MOT directory format to OD format as well as converting the VisDrone annotation format, same format as coco, to work within YOLO format.
+!!!This repository was designed to solve object tracking problem. The first step to solve the object tracking problem is object detection.!!! Therefore, we used VisDrone-MOT Dataset and convert the image and annonation directories to object detection format. To sum up the util.py code is capable of converting the MOT directory format to OD format as well as converting the VisDrone annotation format, same format as coco, to work within YOLO format.
 
 For more explanation please refer to: 
 [YOLO Annotation Format](https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data#11-create-datasetyaml)
