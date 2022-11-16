@@ -71,7 +71,7 @@ mkdir datasets/VisDrone/VisDrone2019-MOT-test/labels
 
 Then run the following script:
 ```bash
-python3 visdrone_utils.py --raw-dir .../yolodrone_plus/VisDrone_raw/ --data-dir .../yolodrone_plus/datasets/
+python3 visdrone-utils.py --raw-dir .../yolodrone_plus/VisDrone_raw/ --data-dir .../yolodrone_plus/datasets/
 ```
 
 
