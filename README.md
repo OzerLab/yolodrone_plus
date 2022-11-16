@@ -114,14 +114,16 @@ The .yaml files presented in this paper are added to the models folder. Please d
 |SkyData  |YOLODrone    |640  |50.9   |30.5   |36.0   |61,959,200      
 |SkyData  |YOLODrone+   |640  |56.0   |32.7   |38.2   |154,646,139
    
+<!--
 ## TODOs
 - [ ] support more object tracking datasets
 - [x] add the pretrained weights to gdrive
 - [ ] MOT implementation for DeepSort and StrongSort
 - [ ] MOT test implementation for HOTA metrics
 - [ ] add fps results
+-->
 
-## Citation
+## Acknowledgement
 The codes for training YOLOv5 was retrieved from original [YOLOv5 github repository](https://github.com/ultralytics/yolov5) and modified in order to increase the accuracy of the detector for UAV Datasets especially considering the small objects in these datasets. Therefore, please do not forget to refer and cite original [YOLOv5 github repository](https://github.com/ultralytics/yolov5) for more information. 
 
 ## References
